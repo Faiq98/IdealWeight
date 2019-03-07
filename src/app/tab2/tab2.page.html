@@ -1,9 +1,90 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Diet Food Suggestion
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content padding>
+
+  <ion-slides loop="true" pager="true" autoplay="5000">
+
+    <ion-slide>
+      <ion-card padding>
+
+        <ion-item>
+          <ion-icon name="help" slot="start"></ion-icon>
+          <p>Calories are a measure of how much energy food or drink contains.</p>
+        </ion-item>
+
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card padding>
+
+        <ion-item>
+          <ion-icon name="arrow-dropright" slot="start"></ion-icon>
+          <p>The amount of energy you need will depend on age, lifestyle and size</p>
+        </ion-item>
+
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card padding>
+
+        <ion-item>
+          <ion-icon name="man" slot="start"></ion-icon>
+          <p>A man needs around 10,500kJ (2,500kcal) a day to maintain his weight</p>
+        </ion-item>
+
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card padding>
+
+        <ion-item>
+          <ion-icon name="woman" slot="start"></ion-icon>
+          <p>A woman, needs around 8,400kJ (2,000kcal) a day to maintain his weight</p>
+        </ion-item>
+
+      </ion-card>
+    </ion-slide>
+
+  </ion-slides>
+
+  <ion-item>
+
+    <ion-label>Main Ingredient : </ion-label>
+    <ion-input placeholder="fish" [(ngModel)]="reg" type="text" name="reg"></ion-input>
+    <ion-button (click)="getFood(reg)">
+      <ion-icon slot="icon-only" name="search"></ion-icon>
+    </ion-button>
+  </ion-item>
+
+
+  <ion-card *ngFor="let f of foods">
+    <img src={{f.recipe.image}} />
+    <ion-card-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card-subtitle>{{f.recipe.source}}</ion-card-subtitle>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-card-title>{{f.recipe.label}}</ion-card-title>
+          </ion-col>
+          <ion-col style="text-align: right">
+            <ion-card-title>{{f.recipe.calories.toFixed(2)}} calories</ion-card-title>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+  </ion-card>
+
+</ion-content>
